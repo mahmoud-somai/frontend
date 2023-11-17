@@ -1,0 +1,93 @@
+.parentDoc {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+    .divDoc { grid-area: 1 / 2 / 4 / 4; }
+
+.cardDoc {
+    border-radius: 1rem;
+    background-color: rgba(31, 41, 55, 1);
+    padding: 2rem;
+  }
+  
+  .infos {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    grid-gap: 1rem;
+    gap: 1rem;
+  }
+  
+  .imageDoc {
+    height: 15rem;
+    width: 15rem;
+    border-radius: 0.5rem;
+    background-image: url("https://hips.hearstapps.com/hmg-prod/images/portrait-of-a-happy-young-doctor-in-his-clinic-royalty-free-image-1661432441.jpg?crop=0.66698xw:1xh;center,top&resize=1200:*");
+    background-size: cover;
+  }
+  
+  .info {
+    height: 7rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .name {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+  }
+  
+  .function {
+    font-size: 1.5rem;
+    line-height: 1rem;
+    color: rgba(156, 163, 175, 1);
+  }
+  
+  .stats {
+ 
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: rgba(0, 0, 0, 1);
+  }
+  
+  .flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 4px;
+  }
+  
+  .state-value {
+    font-weight: 700;
+    color: rgb(118, 36, 194);
+  }
+  
+  .request {
+    margin-top: 1.5rem;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    transition: all .3s ease;
+  }
+  
+  .request:hover {
+    background-color: rgb(118, 36, 194);
+    color: #fff;
+  }
+  

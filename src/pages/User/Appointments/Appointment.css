@@ -1,0 +1,58 @@
+.parent_apt {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+    
+    .div1_apt { grid-area: 2 / 2 / 5 / 5; }
+
+    
+    .appointment-container {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      
+      .appointment-container h2 {
+        font-size: 42px; /* Increased font size */
+        margin-bottom: 5px;
+        text-align: center; /* Added margin for spacing */
+      }
+      
+      .appointment-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      
+      .appointment-table th,
+      .appointment-table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      
+      .appointment-table th {
+        background-color: #f0f0f0;
+        font-weight: bold;
+      }
+      
+      .appointment-table tbody tr:nth-child(odd) {
+        background-color: #f9f9f9;
+      }
+      
+      .appointment-table tbody tr:nth-child(even) {
+        background-color: #ddd;
+        transition: background-color 0.3s ease;
+      }
+      
+      .appointment-table tbody tr:hover {
+        background-color: #eaf2ff;
+      }
+      

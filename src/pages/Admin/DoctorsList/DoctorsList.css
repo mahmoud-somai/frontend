@@ -1,0 +1,26 @@
+/* Add this to your existing CSS or Doctors.css file */
+
+.appointment-container {
+    position: relative;
+  }
+  
+  .header-with-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px; /* Adjust the margin as needed */
+  }
+  
+  .add-doctor-btn {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .add-doctor-btn:hover {
+    background-color: #0056b3;
+  }
+  
