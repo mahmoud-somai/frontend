@@ -1,48 +1,81 @@
 import React, { useState } from 'react';
-import './Doctors.css'; // Import the CSS file for styling
+import axios from 'axios';
+import './Doctors.css'; 
+import{useNavigate} from "react-router-dom"
+import Swal from 'sweetalert2';
 
 const Doctors = () => {
-  const [doctorData, setDoctorData] = useState({
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
-    location: '',
-    email: '',
-    specialization: '',
-    price: '',
-    startTime: '',
-    endTime: '',
-    startDay: [],
-    endDay: []
-  });
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [location, setLocation] = useState('');
+  const [email, setEmail] = useState('');
+  const [speciality, setSpeciality] = useState('');
+  const [price, setPrice] = useState('');
+  const [timeWorkStart, setTimeWorkStart] = useState('');
+  const [timeWorkEnd, setTimeWorkEnd] = useState('');
+  const [startDay, setStartDay] = useState('');
+  const [endDay, setEndDay] = useState('');
+  const [password, setPassword] = useState('12345678');
+  const navigate=useNavigate()
 
-  const specializationOptions = [
+  const specialityOptions = [
     'Cardiology',
     'Dermatology',
     'Endocrinology',
     'Gastroenterology',
-    // Add more specializations as needed...
   ];
 
   const daysOfWeek = [
     'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
   ];
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (name === 'startDay' || name === 'endDay') {
-      const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
-      setDoctorData({ ...doctorData, [name]: selectedOptions });
-    } else {
-      setDoctorData({ ...doctorData, [name]: value });
+  const generateTimeOptions = () => {
+    const times = [];
+    for (let i = 8; i <= 23; i++) {
+      times.push(`${i < 10 ? '0' : ''}${i}:00`);
+      times.push(`${i < 10 ? '0' : ''}${i}:30`);
     }
+    return times;
   };
 
-  const handleSubmit = (e) => {
+  const timeOptions = generateTimeOptions();
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission (e.g., send data to backend or perform actions)
-    console.log('Doctor Data:', doctorData);
-    // You can add logic here to send the data to your backend
+
+    try {
+      const response = await axios.post('http://localhost:8800/api/doctor',{
+        firstName,
+        lastName,
+        phoneNumber,
+        Location,
+        email,
+        speciality,
+        price,
+        timeWorkStart,
+        timeWorkEnd,
+        startDay,
+        endDay,
+        password,
+      });
+      if (response.status === 200) {
+        console.log('Doctor added with success:', response.data);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Doctor added with success",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        navigate("/admin")
+      } else {
+        console.error('Failed to add doctor:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error adding doctor:', error);
+    }
   };
 
   return (
@@ -55,8 +88,8 @@ const Doctors = () => {
             <input
               type="text"
               name="firstName"
-              value={doctorData.firstName}
-              onChange={handleChange}
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
               required
             />
           </div>
@@ -65,8 +98,8 @@ const Doctors = () => {
             <input
               type="text"
               name="lastName"
-              value={doctorData.lastName}
-              onChange={handleChange}
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
               required
             />
           </div>
@@ -74,9 +107,9 @@ const Doctors = () => {
             <label>Phone Number:</label>
             <input
               type="tel"
-              name="phoneNumber"
-              value={doctorData.phoneNumber}
-              onChange={handleChange}
+              name="PhoneNumber"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
               required
             />
           </div>
@@ -87,8 +120,8 @@ const Doctors = () => {
           <input
             type="text"
             name="location"
-            value={doctorData.location}
-            onChange={handleChange}
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
             required
           />
         </div>
@@ -97,8 +130,8 @@ const Doctors = () => {
           <input
             type="email"
             name="email"
-            value={doctorData.email}
-            onChange={handleChange}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -106,14 +139,14 @@ const Doctors = () => {
           <label>Specialization:</label>
           <select
               name="specialization"
-              value={doctorData.specialization}
-              onChange={handleChange}
+              value={speciality}
+              onChange={(e) => setSpeciality(e.target.value)}
               required
             >
               <option value="">Select specialization</option>
-              {specializationOptions.map((specialization, index) => (
-                <option key={index} value={specialization}>
-                  {specialization}
+              {specialityOptions.map((speciality, index) => (
+                <option key={index} value={speciality}>
+                  {speciality}
                 </option>
               ))}
             </select>
@@ -125,59 +158,69 @@ const Doctors = () => {
           <input
             type="text"
             name="price"
-            value={doctorData.price}
-            onChange={handleChange}
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
             required
           />
         </div>
         <div className="form-group">
           <label>Start Time:</label>
-          <input
-            type="time"
+          <select
             name="startTime"
-            value={doctorData.startTime}
-            onChange={handleChange}
+            value={timeWorkStart}
+            onChange={(e) => setTimeWorkStart(e.target.value)}
             required
-          />
+          >
+            {timeOptions.map((time, index) => (
+              <option key={index} value={time}>
+                {time}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="form-group">
           <label>End Time:</label>
-          <input
-            type="time"
+          <select
+            type="endTime"
             name="endTime"
-            value={doctorData.endTime}
-            onChange={handleChange}
+            value={timeWorkEnd}
+            onChange={(e) => setTimeWorkEnd(e.target.value)}
             required
-          />
+          >
+            {timeOptions.map((time, index) => (
+            <option key={index} value={time}>
+            {time}
+            </option>
+            ))}
+          </select>
+          
+          
         </div>
         </div>
         <div className="flex-container">
         <div className="form-group">
-          <label>Start Day Work:</label>
-          <select
-              name="startday"
-              value={doctorData.startDay}
-              onChange={handleChange}
+        <label>Start Day Work:</label>
+            <select
+              name="startDay"
+              value={startDay}
+              onChange={(e) => setStartDay(e.target.value)}
               required
             >
-              <option value="">Select Start Day</option>
               {daysOfWeek.map((day, index) => (
                 <option key={index} value={day}>
                   {day}
                 </option>
               ))}
             </select>
-
         </div>
         <div className="form-group">
           <label>End Day Work:</label>
           <select
               name="endDay"
-              value={doctorData.endDay}
-              onChange={handleChange}
+              value={endDay}
+              onChange={(e) => setEndDay(e.target.value)}
               required
             >
-              <option value="">Select End Day</option>
               {daysOfWeek.map((day, index) => (
                 <option key={index} value={day}>
                   {day}

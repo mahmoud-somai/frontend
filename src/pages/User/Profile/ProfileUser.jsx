@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './ProfileUser.css';
+import axios from 'axios';
 
 const ProfileUser = () => {
+  const [userAppointments, setUserAppointments] = useState([]);
+  const userId = localStorage.getItem('idUser');
+  const username=localStorage.getItem('NameUser');
+
+
   const user = {
     firstName: 'Jane',
     lastName: 'Doe',
@@ -11,21 +17,31 @@ const ProfileUser = () => {
     image: 'https://t4.ftcdn.net/jpg/02/60/04/09/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg'
   };
 
-  const appointments = [
-    {
-      date: '2023-12-01',
-      time: '10:00 AM',
-      doctorName: 'Dr. Smith',
-      description: 'Check-up'
-    },
-    {
-      date: '2023-12-15',
-      time: '02:30 PM',
-      doctorName: 'Dr. Johnson',
-      description: 'Follow-up'
-    },
-    // Add more appointments as needed
-  ];
+
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const response = await axios.get('http://localhost:8800/api/Appointment');
+        if (response.status === 200) {
+          const appointments = response.data.appointments;
+          const currentDate = new Date(); // Current date and time
+          // Filter appointments after the current date and time
+          const filteredAppointments = appointments.filter(
+            (appointment) => {
+              const appointmentDate = new Date(appointment.DateApp + 'T' + appointment.TimeApp);
+              return appointment.idUser === userId && appointmentDate > currentDate;
+            }
+          );
+          setUserAppointments(filteredAppointments);
+        }
+      } catch (error) {
+        console.error('Error fetching appointments:', error);
+      }
+    };
+    fetchAppointments();
+  }, [userId]);
+
+
 
   return (
     <div className="profile-container">
@@ -34,7 +50,7 @@ const ProfileUser = () => {
           <div className="profile-image">
             <img src={user.image} alt="User" />
           </div>
-          <h2>{user.firstName} {user.lastName}</h2>
+          <h2>{username}</h2>
           <p><strong>Email:</strong> {user.email}</p>
           <p><strong>Address:</strong> {user.address}</p>
           <p><strong>Last Logged In:</strong> {user.lastLoggedIn}</p>
@@ -51,11 +67,11 @@ const ProfileUser = () => {
             </tr>
           </thead>
           <tbody>
-            {appointments.map((appointment, index) => (
+            {userAppointments.map((appointment, index) => (
               <tr key={index}>
-                <td>{appointment.date}</td>
-                <td>{appointment.time}</td>
-                <td>{appointment.doctorName}</td>
+                <td>{appointment.DateApp}</td>
+                <td>{appointment.TimeApp}</td>
+                <td>{appointment.NameDoctor}</td>
               </tr>
             ))}
           </tbody>

@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import{useNavigate} from "react-router-dom"
+import Swal from 'sweetalert2';
+
 import './Users.css';
 const Users = () => {
   const [userData, setUserData] = useState({
@@ -7,13 +11,31 @@ const Users = () => {
     phoneNumber: '',
     address: '',
     email: '',
+    password: '',
   });
+  const navigate=useNavigate()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission (e.g., send data to backend or perform actions)
-    console.log('User Data:', userData);
-    // You can add logic here to send the data to your backend
+    try {
+      const response = await axios.post('http://localhost:8800/api/user/register', userData);
+      if (response.status === 200) {
+        console.log('Doctor added with success:', response.data);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Doctor added with success",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        navigate("/admin")
+      } else {
+        console.error('Failed to add doctor:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error adding doctor:', error);
+    }
+   
   };
 
   const handleChange = (e) => {
@@ -75,9 +97,9 @@ const Users = () => {
             required
           />
         </div>
-        {/* Add more fields as needed */}
+        
         <button type="submit">Add User</button>&nbsp;&nbsp;
-        <button type="submit">Delete User</button>
+        
       </form>
     </div>
   );

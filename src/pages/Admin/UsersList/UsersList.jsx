@@ -1,29 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const UsersList = () => {
-  const users = [
-    {
-      id: '1',
-      userName: 'Alice Johnson',
-      userPhone: '123-456-7890',
-      email: 'user1@gmail.com',
-    },
-    {
-      id: '2',
-      userName: 'Bob Smith',
-      userPhone: '987-654-3210',
-      email: 'user2@gmail.com',
-    },
-    // Add more user information...
-  ];
-
+ 
+  const [users, setUsers] = useState([]);
+  const [usersCount, setUsersCount] = useState(0);
+  
+  
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get('http://localhost:8800/api/Listusers');
+        if (response.status === 200) {
+          const { users, NbUsers } = response.data;
+          setUsers(users);
+          setUsersCount(NbUsers);
+        } else {
+          console.error('Failed to fetch Users:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error fetching Users:', error);
+      }
+    };
+    fetchUsers();
+  }, []);
+  
   return (
     <div className="parent_apt">
       <div className="div1_apt">
         <div className="appointment-container">
           <h2>Users List</h2>
-          <Link to="/admin/user">
+          <Link to="/admin/newUser">
             <button className="add-user-btn">Add User</button>
           </Link>
           <table className="appointment-table">
@@ -36,11 +44,11 @@ const UsersList = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map((user, index) => (
-                <tr key={index}>
-                  <td>{user.id}</td>
-                  <td>{user.userName}</td>
-                  <td>{user.userPhone}</td>
+            {users.map((user) => (
+                <tr key={user._id}>
+                  <td>{user._id}</td>
+                  <td>{user.firstName} {user.lastName}</td>
+                  <td>{user.address}</td>
                   <td>{user.email}</td>
                 </tr>
               ))}

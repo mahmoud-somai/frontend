@@ -1,23 +1,26 @@
-.parent_card {
-    width: 300px;
-    padding: 20px;
-  }
+.card-ctn {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
+}
 
-  
-
-  
-  .card {
-    padding-top: 50px;
-    border: 3px solid rgb(255, 255, 255);
-    transform-style: preserve-3d;
-    background-size: 60px 60px;
-    background-position: 0 0, 0 0;
-    background-color: rgba(4, 193, 250, 0.732);
-    width: 100%;
-    box-shadow: rgba(142, 142, 142, 0.3) 0px 30px 30px -10px;
-    transition: all 0.5s ease-in-out;
-  }
-  
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
+  padding-top: 50px;
+  border: 3px solid rgb(255, 255, 255);
+  transform-style: preserve-3d;
+  background-size: 60px 60px;
+  background-position: 0 0, 0 0;
+  background-color: rgba(4, 193, 250, 0.732);
+  width: 300px;
+  box-shadow: rgba(142, 142, 142, 0.3) 0px 30px 30px -10px;
+  transition: all 0.5s ease-in-out;
+  margin-bottom: 20px;
+}
   .card:hover {
     background-position: -100px 100px, -100px 100px;
     transform: rotate3d(0.5, 1, 0, 30deg);

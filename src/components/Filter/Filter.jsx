@@ -6,7 +6,7 @@ const Filter = () => {
     <div className="listSearch">
     <h1 className="lsTitle">Filter</h1>
     <div className="lsItem">
-      <label>Type Of Doctors</label>
+      <label>Speciality</label>
       <select name="doctorType" >
         <option value="">All</option>
         <option value="General practitioner">General practitioner</option>

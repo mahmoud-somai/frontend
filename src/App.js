@@ -17,6 +17,8 @@ import UsersList from './pages/Admin/UsersList/UsersList';
 import Users from './pages/Admin/Users/Users';
 import Settings from './pages/Doctor/Settings/Settings';
 import ProfileUser from './pages/User/Profile/ProfileUser';
+import ProfileDoctor from './pages/Doctor/ProfilDoctor/ProfileDoctor';
+import LoginDoc from './pages/Login/LoginDoc';
 function App() {
   return (
     <>
@@ -24,22 +26,42 @@ function App() {
       <Background/>
       <BrowserRouter>
       <Routes>
+
+
+
       <Route path="/login" element={<Login/>}/>
+      <Route path="/doc" element={<LoginDoc/>}/>
       <Route path="/register" element={<Register/>}/>
-      <Route path="/booking" element={<Booking/>}/>
-      <Route path="/doctor" element={<BookDoc/>}/>
-      <Route path="/appoitment" element={<Appointment/>}/>
-      <Route path="/notifications" element={<Notification/>}/>
-      <Route path="/appoitmentList" element={<AppointmentList/>}/>
-      <Route path="/notifsList" element={<NotifsList/>}/>
+
+
+      <Route path="/admin/newDoctor" element={<Doctors/>}/> 
       <Route path="/admin" element={<HomeAdmin/>}/>
-      <Route path="/admin/doctor" element={<Doctors/>}/>
       <Route path="/admin/doctorsList" element={<DoctorsList/>}/>
       <Route path="/admin/usersList" element={<UsersList/>}/>
-      <Route path="/admin/user" element={<Users/>}/>
+      <Route path="/admin/newUser" element={<Users/>}/>
+
+
+
       <Route path="/doctor/settings" element={<Settings/>}/>
-      <Route path="/doctor/profile" element={<ProfileUser/>}/>
+      <Route path="/doctor/profile" element={<ProfileDoctor/>}/>
+      <Route path="/doctor/appoitmentList" element={<AppointmentList/>}/>
+
+      <Route path="/booking" element={<Booking/>}/>
+      <Route path="/user/appoitment" element={<Appointment/>}/>
+      <Route path="/booking/doctor/:id" element={<BookDoc/>}/>
       <Route path="/user/profile" element={<ProfileUser/>}/>
+
+
+
+
+    
+      <Route path="/user/notifications" element={<Notification/>}/>
+      <Route path="/doctor/notifsList" element={<NotifsList/>}/>
+      
+
+
+
+      
       
       </Routes>
       </BrowserRouter>

@@ -2,7 +2,7 @@
 
 .listSearch {
 
-  background-image: linear-gradient(160deg, #68c1b6 0%, #f0f6f5 100%);
+  background-image: linear-gradient(160deg, #9EDDFF 0%, #9EDDFF  100%);
   padding: 10px;
   border-radius: 10px;
   top: 10px;
@@ -10,9 +10,10 @@
 
 
 .lsTitle{
-  font-size: 20px;
-  color: #555;
+  font-size: 25px;
+  color: #0E21A0;
   margin-bottom: 10px;
+  padding-left: 150px;
 }
 
 .lsItem{
@@ -24,13 +25,16 @@
 }
 
 .lsItem>label{
-  font-size: 12px;
+  font-size: 15px;
+  color:#0E21A0
 }
 
 .lsItem>input{
-  height: 30px;
+  height: 25px;
   border: none;
+  border-radius: 5px;
   padding: 5px;
+  width: 325px;
 }
 .lsItem>span{
   height: 30px;
@@ -59,10 +63,10 @@
 
 .listSearch>button{
   padding: 10px;
-  background-color: #0071c2;
+  background-color: #05BFDB;
   color: white;
   border: none;
-  width: 100%;
+  width: 335px;
   font-weight: 500;
   cursor: pointer;
 }
@@ -87,9 +91,9 @@
              -13px -13px 100px #ffffff;
 }
 .LsItem>select{
-background-color: #969696;
+background-color: #6499E9;
 transition: 300ms ease-in-out;
-box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+
 
 }
 
@@ -126,10 +130,10 @@ background-color: #E6E6E6;
 border-radius: 4px;
 }
 .lsItem select {
-background-color: #ccc;
+background-color: #fff;
 font-size: 1rem;
 font-weight: normal;
-max-width: 100%;
+max-width: 350px;
 padding: 8px 24px 8px 10px;
 border: none;
 

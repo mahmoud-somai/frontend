@@ -1,30 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './DoctorsList.css'; 
 import { Link } from 'react-router-dom';
 
 const DoctorsList = () => {
-  const doctors = [
-    {
-      id: '1',
-      doctorName: 'Dr. John Doe',
-      doctorPhone: '123-456-7890',
-      specialization: 'Cardiology',
-    },
-    {
-      id: '2',
-      doctorName: 'Dr. Jane Smith',
-      doctorPhone: '987-654-3210',
-      specialization: 'Dermatology',
-    },
-    // Add more doctor information...
-  ];
+  const [doctors, setDoctors] = useState([]);
+  const [doctorsCount, setDoctorsCount] = useState(0);
+
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const response = await axios.get('http://localhost:8800/api/Listdoctor');
+        if (response.status === 200) {
+          const { doctors, NbDoctors } = response.data;
+          setDoctors(doctors);
+          setDoctorsCount(NbDoctors);
+        } else {
+          console.error('Failed to fetch doctors:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error fetching doctors:', error);
+      }
+    };
+
+    fetchDoctors();
+  }, []);
 
   return (
     <div className="parent_apt">
       <div className="div1_apt">
         <div className="appointment-container">
           <h2>Doctors List</h2>
-          <Link to="/admin/doctor">
+          <Link to="/admin/newDoctor">
               <button className="add-doctor-btn">Add Doctor</button>
             </Link>
           <table className="appointment-table">
@@ -32,17 +39,17 @@ const DoctorsList = () => {
               <tr>
                 <th>ID</th>
                 <th>Doctor</th>
-                <th>Doctor's Phone</th>
-                <th>Doctor's Specialization</th>
+                <th>Phone</th>
+                <th>Specialization</th>
               </tr>
             </thead>
             <tbody>
-              {doctors.map((appointment, index) => (
-                <tr key={index}>
-                  <td>{appointment.id}</td>
-                  <td>{appointment.doctorName}</td>
-                  <td>{appointment.doctorPhone}</td>
-                  <td>{appointment.specialization}</td>
+            {doctors.map((doctor) => (
+                <tr key={doctor._id}>
+                  <td>{doctor._id}</td>
+                  <td>{doctor.firstName} {doctor.lastName}</td>
+                  <td>{doctor.phoneNumber}</td>
+                  <td>{doctor.speciality}</td>
                 </tr>
               ))}
             </tbody>

@@ -1,13 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import Chart from 'chart.js/auto'; // Import Chart.js
-
+import React, { useEffect, useRef, useState } from 'react';
+import Chart from 'chart.js/auto';
+import axios from 'axios'; 
 import './HomeAdmin.css';
 
-const userStatsData = {
-  totalUsers: 130,
-  users: 80,
-  doctors: 50,
-};
+
 const appointmentData = [
     { date: '2023-01-05', patient: 'Patient A' },
     { date: '2023-02-10', patient: 'Patient B' },
@@ -99,10 +95,48 @@ const groupAppointmentsByMonth = () => {
 };
 
 const HomeAdmin = () => {
+  const [userCount, setUserCount] = useState(0);
+  const [doctorCount, setDoctorCount] = useState(0);
   const pieChartContainer = useRef(null);
   const barChartContainer = useRef(null);
   const pieChartInstance = useRef(null);
   const barChartInstance = useRef(null);
+  useEffect(() => {
+    const fetchUserCount = async () => {
+      try {
+        const response = await axios.get('http://localhost:8800/api/Listusers'); // Make GET request using Axios
+        if (response.status === 200) {
+          setUserCount(response.data.NbUsers);
+           // Update user count state
+        } else {
+          console.error('Error fetching user count:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error fetching user count:', error);
+      }
+    };
+
+    fetchUserCount();
+  }, []);
+
+
+  useEffect(() => {
+    const fetchDoctorCount = async () => {
+      try {
+        const response = await axios.get('http://localhost:8800/api/ListDoctor'); // Make GET request using Axios
+        if (response.status === 200) {
+          setDoctorCount(response.data.NbDoctors);
+           // Update user count state
+        } else {
+          console.error('Error fetching Doctor count:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error fetching Doctor count:', error);
+      }
+    };
+
+    fetchDoctorCount();
+  }, []);
 
   useEffect(() => {
     // Pie Chart
@@ -118,8 +152,8 @@ const HomeAdmin = () => {
         data: {
           labels: ['Total Subscribers', 'Users', 'Doctors'],
           datasets: [{
-            label: 'User Stats',
-            data: [userStatsData.totalUsers, userStatsData.users, userStatsData.doctors],
+            label: 'Total ',
+            data: [userCount+doctorCount, userCount, doctorCount],
             backgroundColor: [
               'rgba(255, 99, 132, 0.6)',
               'rgba(54, 162, 235, 0.6)',
@@ -198,9 +232,9 @@ const HomeAdmin = () => {
       <div className="chart-container">
         <div className="chart-item stats">
           <h2>User Statistics</h2>
-          <p>Total Subscribers in website: {userStatsData.totalUsers}</p>
-          <p>Users: {userStatsData.users}</p>
-          <p>Doctors: {userStatsData.doctors}</p>
+          <p>Total Subscribers in website: {userCount+doctorCount}</p>
+          <p>Users: {userCount}</p>
+          <p>Doctors: {doctorCount}</p>
         </div>
 
         <div className="chart-item graph">

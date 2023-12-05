@@ -1,23 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import{useNavigate} from "react-router-dom"
 import './Appointment.css'
+
+
+
 const Appointment = () => {
-    const appointments = [
-        {
-          id: '12345',
-          doctorName: 'Dr. John Doe',
-          doctorPhone: '123-456-7890',
-          dateTime: 'November 25, 2023 at 10:00 AM',
-          status: 'Confirmed'
-        },
-        {
-            id: '12345',
-            doctorName: 'Dr. John Doe',
-            doctorPhone: '123-456-7890',
-            dateTime: 'November 25, 2023 at 10:00 AM',
-            status: 'Confirmed'
-          },
-       
-      ];
+  const [appointments, setAppointments] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8800/api/Appointment');
+        if (response.status === 200) {
+          const userAppointments = response.data.appointments.filter(
+            (appointment) => appointment.idUser === localStorage.getItem('userId')
+          );
+          setAppointments(userAppointments);
+        }
+      } catch (error) {
+            console.error('Error fetching appointments:', error);
+      }
+    };
+    fetchData();
+  }, []);
+
+
+
   return (
     <div class="parent_apt">
 <div class="div1_apt"> 
@@ -28,18 +36,18 @@ const Appointment = () => {
         <tr>
           <th>ID</th>
           <th>Doctor</th>
-          <th>Doctor's Phone</th>
-          <th>Date & Time</th>
+          <th>Date</th>
+          <th>Time</th>
           <th>Status</th>
         </tr>
       </thead>
       <tbody>
-        {appointments.map((appointment, index) => (
-          <tr key={index}>
-            <td>{appointment.id}</td>
-            <td>{appointment.doctorName}</td>
-            <td>{appointment.doctorPhone}</td>
-            <td>{appointment.dateTime}</td>
+        {appointments.map((appointment) => (
+          <tr key={appointments._id}>
+            <td>{appointment._id.slice(-10)}</td>
+            <td>{appointment.NameDoctor}</td>
+            <td>{appointment.DateApp}</td>
+            <td>{appointment.TimeApp}</td>
             <td>{appointment.status}</td>
           </tr>
         ))}
