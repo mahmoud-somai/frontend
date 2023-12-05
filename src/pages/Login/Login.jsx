@@ -18,7 +18,7 @@ const Login = () => {
       });
 
       if (response.status === 200) {
-        const{ token ,idUser,NameUser }= response.data;
+        const{ token ,idUser,NameUser,role }= response.data;
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -29,6 +29,7 @@ const Login = () => {
         localStorage.setItem('token', token);
         localStorage.setItem('idUser', idUser);
         localStorage.setItem('NameUser', NameUser);
+        localStorage.setItem('role', role);
         navigate("/user/profile")
       }
     } catch (error) {
