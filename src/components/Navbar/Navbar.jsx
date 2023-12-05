@@ -53,4 +53,8 @@ const Navbar = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Navbar;
+=======
+export default Navbar
+>>>>>>> 3ed31286e7f30065a09ddc603c3020bb7c1c495a
