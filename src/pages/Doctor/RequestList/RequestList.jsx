@@ -3,9 +3,9 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import{useNavigate} from "react-router-dom"
 
-const AppointmentList = () => {
+const RequestList = () => {
   const [appointments, setAppointments] = useState([]);
-  
+  const navigate=useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,7 +15,7 @@ const AppointmentList = () => {
           const today = new Date().toISOString().split('T')[0];
           console.log(today); // Get current date in YYYY-MM-DD format
           const filteredAppointments = response.data.appointments.filter(
-            (appointment) => appointment.status === true 
+            (appointment) => appointment.pending === true 
           );
           setAppointments(filteredAppointments);
         }
@@ -27,6 +27,43 @@ const AppointmentList = () => {
     fetchData();
   }, []);
 
+  const handleApprove = async (id) => {
+    try {
+      const response = await axios.patch(`http://34.196.153.174:4000/api/approve/${id}`);
+      if (response.status === 200) {
+        console.log('Appointment approved successfully');
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "approved",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        navigate("/doctor")
+      }
+    } catch (error) {
+      console.error('Error approving appointment:', error);
+    }
+  };
+
+  const handleCanceled= async (id) => {
+    try {
+      const response = await axios.patch(`http://34.196.153.174:4000/api/cancel/${id}`);
+      if (response.status === 200) {
+        console.log('Appointment canceled successfully');
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "canceled",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        navigate("/doctor")
+      }
+    } catch (error) {
+      console.error('Error canceling appointment:', error);
+    }
+  };
 
   return (
     <div className="parent_apt">
@@ -40,7 +77,7 @@ const AppointmentList = () => {
                 <th>User Name</th>
                 <th>Date</th>
                 <th>Time</th>
-          
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
@@ -50,7 +87,10 @@ const AppointmentList = () => {
                   <td>{appointment.NameUser}</td>
                   <td>{appointment.DateApp} </td>
                   <td>{appointment.TimeApp}</td>
-
+                  <td>
+                    <button onClick={() => handleApprove(appointment._id)}>Approved</button>&nbsp;&nbsp;
+                    <button onClick={() => handleCanceled(appointment._id)}>Cancel</button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -61,4 +101,4 @@ const AppointmentList = () => {
   );
 };
 
-export default AppointmentList;
+export default RequestList;

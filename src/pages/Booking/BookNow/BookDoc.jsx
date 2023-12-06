@@ -18,7 +18,7 @@ const BookDoc = () => {
   useEffect(() => {
     const fetchDoctor = async () => {
       try {
-        const response = await axios.get(`http://localhost:8800/api/doctor/${id}`);
+        const response = await axios.get(`http://34.196.153.174:4000/api/doctor/${id}`);
         if (response.status === 200) {
           setDoctor(response.data);
         }
@@ -29,6 +29,17 @@ const BookDoc = () => {
     fetchDoctor();
   }, [id]);
 
+
+  const generateTimeOptions = () => {
+    const times = [];
+    for (let i = 8; i <= 23; i++) {
+      times.push(`${i < 10 ? '0' : ''}${i}:00`);
+      times.push(`${i < 10 ? '0' : ''}${i}:30`);
+    }
+    return times;
+  };
+
+  const timeOptions = generateTimeOptions();
 
   const handleTakeAppointment = async () => {
     try {
@@ -74,11 +85,21 @@ const BookDoc = () => {
                 </div>
                 <div className="stats">
                   <h3>Time Of Appointment</h3>
-                  <input
-                    type="time"
-                    value={selectedTime}
-                    onChange={(e) => setSelectedTime(e.target.value)}
-                  />
+        <div>
+
+            <select
+                name="selectedTime"
+                value={selectedTime}
+                  onChange={(e) => setSelectedTime(e.target.value)} // Updated to setSelectedTime
+                required
+              >
+            {timeOptions.map((time, index) => (
+              <option key={index} value={time}>
+                {time}
+              </option>
+            ))}
+          </select>
+          </div>
                   <input
                     type="date"
                     value={selectedDate}

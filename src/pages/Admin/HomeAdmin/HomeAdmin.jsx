@@ -61,46 +61,36 @@ const appointmentData = [
   ];
   
 
-const groupAppointmentsByMonth = () => {
-  const appointmentsByMonth = {};
 
-  const allMonths = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
-
-  appointmentData.forEach(appointment => {
-    const year = new Date(appointment.date).getFullYear();
-    const month = new Date(appointment.date).toLocaleString('en-US', { month: 'long' });
-
-    if (year === 2023) { // Considering appointments only for the year 2023
-      const key = `${year}-${month}`;
-
-      if (!appointmentsByMonth[key]) {
-        appointmentsByMonth[key] = 0;
-      }
-      appointmentsByMonth[key]++;
-    }
-  });
-
-  // Fill missing months with zero appointments
-  allMonths.forEach(month => {
-    const key = `2023-${month}`;
-    if (!appointmentsByMonth[key]) {
-      appointmentsByMonth[key] = 0;
-    }
-  });
-
-  return appointmentsByMonth;
-};
+  
 
 const HomeAdmin = () => {
   const [userCount, setUserCount] = useState(0);
   const [doctorCount, setDoctorCount] = useState(0);
+  const [appointmentsByMonth, setAppointmentsByMonth] = useState({});
   const pieChartContainer = useRef(null);
   const barChartContainer = useRef(null);
   const pieChartInstance = useRef(null);
   const barChartInstance = useRef(null);
+  
+
+  const groupAppointmentsByMonth = () => {
+    const appointmentsByMonth = {};
+  
+    const currentYear = new Date().getFullYear();
+    const allMonths = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+  
+    allMonths.forEach(month => {
+      const key = `${currentYear}-${month}`;
+      appointmentsByMonth[key] = 0;
+    });
+  
+    return appointmentsByMonth;
+  };
+
   useEffect(() => {
     const fetchUserCount = async () => {
       try {
@@ -139,6 +129,40 @@ const HomeAdmin = () => {
   }, []);
 
   useEffect(() => {
+    const fetchAppointmentsByMonth = async () => {
+      try {
+        const response = await axios.get('http://34.196.153.174:4000/api/Appointment');
+        if (response.status === 200) {
+          const appointments = response.data.appointments;
+          const currentYear = new Date().getFullYear();
+  
+          const appointmentsByMonth = groupAppointmentsByMonth();
+  
+          appointments.forEach(appointment => {
+            const date = new Date(appointment.DateApp);
+            const year = date.getFullYear();
+            const month = date.toLocaleString('en-US', { month: 'long' });
+            const key = `${year}-${month}`;
+  
+            if (year === currentYear ) {
+              appointmentsByMonth[key]++;
+            }
+          });
+  
+          setAppointmentsByMonth(appointmentsByMonth);
+        } else {
+          console.error('Error fetching appointments:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error fetching appointments:', error);
+      }
+    };
+  
+    fetchAppointmentsByMonth();
+  }, []);
+  
+
+  useEffect(() => {
     // Pie Chart
     if (pieChartContainer && pieChartContainer.current) {
       if (pieChartInstance.current) {
@@ -174,14 +198,13 @@ const HomeAdmin = () => {
     }
 
     // Bar Chart
-    if (barChartContainer && barChartContainer.current) {
+    if (barChartContainer && barChartContainer.current && Object.keys(appointmentsByMonth).length > 0) {
       if (barChartInstance.current) {
         barChartInstance.current.destroy(); // Destroy the existing chart instance
       }
-
+  
       const ctx = barChartContainer.current.getContext('2d');
-      const appointmentsByMonth = groupAppointmentsByMonth();
-
+  
       barChartInstance.current = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -201,13 +224,13 @@ const HomeAdmin = () => {
             x: {
               title: {
                 display: true,
-                text: 'Number of Appointments',
+                text: 'Months',
               },
             },
             y: {
               title: {
                 display: true,
-                text: 'Months',
+                text: 'Number of Appointments',
               },
             },
           },

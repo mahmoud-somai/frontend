@@ -19,6 +19,7 @@ import Settings from './pages/Doctor/Settings/Settings';
 import ProfileUser from './pages/User/Profile/ProfileUser';
 import ProfileDoctor from './pages/Doctor/ProfilDoctor/ProfileDoctor';
 import LoginDoc from './pages/Login/LoginDoc';
+import RequestList from './pages/Doctor/RequestList/RequestList';
 function App() {
   return (
     <>
@@ -57,6 +58,7 @@ function App() {
     
       <Route path="/user/notifications" element={<Notification/>}/>
       <Route path="/doctor/notifsList" element={<NotifsList/>}/>
+      <Route path="/doctor/Requests" element={<RequestList/>}/>
       
 
 

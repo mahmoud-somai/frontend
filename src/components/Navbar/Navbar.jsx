@@ -45,10 +45,10 @@ const Navbar = () => {
                 <a href="/profile">Profile</a>
               </li>
               <li>
-                <a href="/booking">Services</a>
+                <a href="/booking">Requests</a>
               </li>
               <li>
-                <a href="/appointments">My Appointments</a>
+                <a href="/doctor/appoitmentList">My Appointments</a>
               </li>
               <li>
                 <a href="/notifications">My Notifications</a>
