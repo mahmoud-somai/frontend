@@ -159,7 +159,7 @@ const Settings = () => {// Get the doctor ID from the URL params
               onChange={handleChange}
               required
             >
-              <option value="">Select specialization</option>
+            
               {specialityOptions.map((speciality, index) => (
                 <option key={index} value={speciality}>
                   {speciality}
@@ -167,9 +167,6 @@ const Settings = () => {// Get the doctor ID from the URL params
               ))}
             </select>
         </div>
-
-
-
 
         </div> 
         <div className="flex-container">
@@ -183,9 +180,6 @@ const Settings = () => {// Get the doctor ID from the URL params
             required
           />
         </div>
-
-
-
 
         <div className="form-group">
           <label>Start Time:</label>
