@@ -14,7 +14,7 @@ const ProfileUser = () => {
     address: '456 Elm St, Townsville',
     email: 'jane@example.com',
     lastLoggedIn: '2023-11-15',
-    image: 'https://t4.ftcdn.net/jpg/02/60/04/09/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg'
+    image: 'https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3Y5MzctYWV3LTEzOS5qcGc.jpg'
   };
 
 

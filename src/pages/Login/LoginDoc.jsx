@@ -28,6 +28,7 @@ const LoginDoc = () => {
           localStorage.setItem('token', token);
           localStorage.setItem('idUser', idDoctor);
           localStorage.setItem('NameUser', NameDoctor);
+          localStorage.setItem('role', 'doctor');
           navigate("/doctor/profile")
         }
       } catch (error) {

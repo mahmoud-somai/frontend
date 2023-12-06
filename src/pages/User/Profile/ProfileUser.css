@@ -1,69 +1,72 @@
-.profile-info {
-    margin-top: 40px; /* Increase top margin for spacing */
-  }
-  
-  .profile-image img {
-    max-width: 250px;
-    border-radius: 50%;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-  }
-  
-  .profile-info h2 {
-    margin-bottom: 15px;
-    font-size: 28px;
-  }
-  
-  .profile-info p {
-    margin: 15px 0;
-    font-size: 20px;
-  }
+/* Profile Container */
 .profile-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  /* Profile container */
-  .profile {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid transparent;
-    padding: 60px;
-    margin-right: 40px; /* Add right margin for spacing */
-  }
-  
-  /* Next appointment */
-  .next-appointment {
-    border: 2px solid #ccc;
-    padding: 20px;
-  }
-  
-  .next-appointment h2 {
-    margin-bottom: 15px;
-    font-size: 24px;
-  }
-  
-  .next-appointment table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .next-appointment th{
-    border: 1px solid transparent;
-    padding: 8px;
-  }
-  .next-appointment td {
-    border: 1px solid transparent;
-    padding: 8px;
-    background-color: rgb(185, 185, 185);
-  }
-  
-  .next-appointment th {
-    background-color: #f0f0f0;
-    font-weight: bold;
-    text-align: left;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px; /* Adjust padding as needed */
+}
+
+/* Profile Info */
+.profile-info {
+  text-align: center;
+  margin-bottom: 40px; /* Add space between profile and appointments */
+}
+
+.profile-image img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  border: 4px solid #fff;
+}
+
+.profile-info h2 {
+  margin-bottom: 10px;
+  font-size: 32px;
+  color: #001B79;
+}
+
+.profile-info p {
+  margin: 10px 0;
+  font-size: 20px;
+  color: #363062;
+}
+
+/* Next Appointment */
+.next-appointment {
+  background-color: #f5f5f5; /* Lighter background color */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.next-appointment h2 {
+  margin-bottom: 20px;
+  font-size: 26px;
+  color: #333;
+}
+
+.next-appointment table {
+  width: 500px;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.next-appointment th,
+.next-appointment td {
+  padding: 12px;
+  text-align: center;
+}
+
+.next-appointment th {
+  background-color: #ddd;
+  font-weight: bold;
+}
+
+.next-appointment td {
+  background-color: #fff;
+}
+
+.next-appointment tbody tr:nth-child(even) {
+  background-color: #f9f9f9; /* Alternate row background */
+}
