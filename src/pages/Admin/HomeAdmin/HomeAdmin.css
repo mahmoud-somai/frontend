@@ -2,7 +2,7 @@
 
 .home-admin {
     font-family: Arial, sans-serif;
-    padding: 20px;
+    padding: 5px;
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
@@ -26,17 +26,27 @@
   .chart-item {
     flex: 1;
     padding: 20px;
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
+    background-color: transparent;
   }
+
+  .chart-item.stats {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+  }
+
   
   .stats h2, .graph h2 {
     margin-top: 0;
+    
   }
   
   .stats p {
     margin: 5px 0;
   }
+  
   
   ul {
     list-style: none;

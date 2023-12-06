@@ -163,10 +163,10 @@ const HomeAdmin = () => {
   
 
   useEffect(() => {
-    // Pie Chart
+    // Recreate the pie chart when userCount or doctorCount changes
     if (pieChartContainer && pieChartContainer.current) {
       if (pieChartInstance.current) {
-        pieChartInstance.current.destroy(); // Destroy the existing chart instance
+        pieChartInstance.current.destroy();
       }
 
       const ctx = pieChartContainer.current.getContext('2d');
@@ -177,7 +177,7 @@ const HomeAdmin = () => {
           labels: ['Total Subscribers', 'Users', 'Doctors'],
           datasets: [{
             label: 'Total ',
-            data: [userCount+doctorCount, userCount, doctorCount],
+            data: [userCount + doctorCount, userCount, doctorCount],
             backgroundColor: [
               'rgba(255, 99, 132, 0.6)',
               'rgba(54, 162, 235, 0.6)',
@@ -196,15 +196,17 @@ const HomeAdmin = () => {
         },
       });
     }
+  }, [userCount, doctorCount]);
 
-    // Bar Chart
+  useEffect(() => {
+    // Recreate the bar chart when appointmentsByMonth changes
     if (barChartContainer && barChartContainer.current && Object.keys(appointmentsByMonth).length > 0) {
       if (barChartInstance.current) {
-        barChartInstance.current.destroy(); // Destroy the existing chart instance
+        barChartInstance.current.destroy();
       }
-  
+
       const ctx = barChartContainer.current.getContext('2d');
-  
+
       barChartInstance.current = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -232,45 +234,42 @@ const HomeAdmin = () => {
                 display: true,
                 text: 'Number of Appointments',
               },
+              suggestedMin: 0, // Ensure the y-axis starts from 0
+            ticks: {
+              stepSize: 1,
+              precision: 0, // Force integers, no decimal places
+            },
+             
             },
           },
         },
       });
     }
-
-    return () => {
-      if (pieChartInstance.current) {
-        pieChartInstance.current.destroy(); // Cleanup pie chart on component unmount
-      }
-      if (barChartInstance.current) {
-        barChartInstance.current.destroy(); // Cleanup bar chart on component unmount
-      }
-    };
-  }, []);
+  }, [appointmentsByMonth]);
 
   return (
     <div className="home-admin">
-      <h1>Welcome to Admin Dashboard</h1>
+    <h1>Welcome to Admin Dashboard</h1>
 
-      <div className="chart-container">
-        <div className="chart-item stats">
-          <h2>User Statistics</h2>
-          <p>Total Subscribers in website: {userCount+doctorCount}</p>
-          <p>Users: {userCount}</p>
-          <p>Doctors: {doctorCount}</p>
-        </div>
-
-        <div className="chart-item graph">
-          <h2>User Stats Pie Chart</h2>
-          <canvas ref={pieChartContainer} width="400" height="300"></canvas>
-        </div>
+    <div className="chart-container">
+      <div className="chart-item stats">
+        <h2>User Statistics</h2>
+        <p>Total Subscribers in website: {userCount + doctorCount}</p>
+        <p>Users: {userCount}</p>
+        <p>Doctors: {doctorCount}</p>
       </div>
 
-      <div className="appointment-bar-chart">
-        <h2>Appointments By Month (Bar Chart for 2023)</h2>
-        <canvas ref={barChartContainer} width="400" height="300"></canvas>
+      <div   className="chart-item graph">
+        <h2>User Stats Pie Chart</h2>
+        <canvas  ref={pieChartContainer} width="400" height="300"></canvas>
       </div>
     </div>
+
+    <div className="appointment-bar-chart">
+      <h2>Appointments By Month (Bar Chart for 2023)</h2>
+      <canvas ref={barChartContainer} width="400" height="300"></canvas>
+    </div>
+  </div>
   );
 }
 
