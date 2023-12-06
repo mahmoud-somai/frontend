@@ -1,26 +1,77 @@
-/* Add this to your existing CSS or Doctors.css file */
+/* DoctorsList.css */
+
+/* Styles for the DoctorsList component */
+.parent_apt {
+  display: flex;
+  justify-content: center;
+}
+
+.div1_apt {
+  width: 80%;
+  margin-top: 20px;
+}
+
+
 
 .appointment-container {
-    position: relative;
-  }
-  
-  .header-with-button {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px; /* Adjust the margin as needed */
-  }
-  
-  .add-doctor-btn {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .add-doctor-btn:hover {
-    background-color: #0056b3;
-  }
-  
+  background-color: #e6f7ff; /* New background color */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-container h2 {
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.appointment-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.appointment-table th,
+.appointment-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.appointment-table th {
+  background-color: #f2f2f2;
+}
+
+.appointment-table tbody tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+.appointment-table tbody tr:hover {
+  background-color: #ececec;
+}
+.update-btn,
+.delete-btn {
+  padding: 8px 12px;
+  margin-right: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.update-btn {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.update-btn:hover {
+  background-color: #218838;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}

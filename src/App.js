@@ -46,20 +46,19 @@ function App() {
       <Route path="/admin/updateuser/:id" element={<UpdateUser/>}/>
 
 
-
       <Route path="/doctor/settings" element={<Settings/>}/>
       <Route path="/doctor/profile" element={<ProfileDoctor/>}/>
       <Route path="/doctor/appoitmentList" element={<AppointmentList/>}/>
+      <Route path="/doctor/notifsList" element={<NotifsList/>}/>
+      <Route path="/doctor/Requests" element={<RequestList/>}/>
+
 
       <Route path="/booking" element={<Booking/>}/>
       <Route path="/user/appoitment" element={<Appointment/>}/>
       <Route path="/booking/doctor/:id" element={<BookDoc/>}/>
       <Route path="/user/profile" element={<ProfileUser/>}/>
-
-    
       <Route path="/user/notifications" element={<Notification/>}/>
-      <Route path="/doctor/notifsList" element={<NotifsList/>}/>
-      <Route path="/doctor/Requests" element={<RequestList/>}/>
+
       
 
 

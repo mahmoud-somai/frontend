@@ -82,7 +82,7 @@ const DoctorsList = () => {
           <Link to={`/admin/updatedoctor/${doctor._id}`}>
              <button className="update-btn">Update</button>
           </Link>
-            <button onClick={() => handleDeleteDoctor(doctor._id)}>Delete</button>
+            <button className="delete-btn" onClick={() => handleDeleteDoctor(doctor._id)}>Delete</button>
           </td>
         </tr>
       ))}
