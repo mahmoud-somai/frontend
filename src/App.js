@@ -20,6 +20,8 @@ import ProfileUser from './pages/User/Profile/ProfileUser';
 import ProfileDoctor from './pages/Doctor/ProfilDoctor/ProfileDoctor';
 import LoginDoc from './pages/Login/LoginDoc';
 import RequestList from './pages/Doctor/RequestList/RequestList';
+import UpdateDoc from './pages/Admin/DoctorsList/UpdateDoc';
+import UpdateUser from './pages/Admin/UsersList/UpdateUser';
 function App() {
   return (
     <>
@@ -40,6 +42,8 @@ function App() {
       <Route path="/admin/doctorsList" element={<DoctorsList/>}/>
       <Route path="/admin/usersList" element={<UsersList/>}/>
       <Route path="/admin/newUser" element={<Users/>}/>
+      <Route path="/admin/updatedoctor/:id" element={<UpdateDoc/>}/>
+      <Route path="/admin/updateuser/:id" element={<UpdateUser/>}/>
 
 
 
@@ -51,9 +55,6 @@ function App() {
       <Route path="/user/appoitment" element={<Appointment/>}/>
       <Route path="/booking/doctor/:id" element={<BookDoc/>}/>
       <Route path="/user/profile" element={<ProfileUser/>}/>
-
-
-
 
     
       <Route path="/user/notifications" element={<Notification/>}/>

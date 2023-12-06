@@ -5,22 +5,45 @@ import { Link } from 'react-router-dom';
 
 
 
-const BookingCard = () => {
+const BookingCard = ({ filter }) => {
   const [doctors, setDoctors] = useState([]);
 
+
+
   useEffect(() => {
-    const fetchDoctors = async () => {
-      try {
-        const response = await axios.get('http://34.196.153.174:4000/api/Listdoctor');
-        if (response.status === 200) {
-          setDoctors(response.data.doctors);
-        }
-      } catch (error) {
-        console.error('Error fetching doctors:', error);
+    loadDoctors();
+  }, [filter]);
+
+  const loadDoctors = async () => {
+    try {
+      const response = await axios.get('http://34.196.153.174:4000/api/Listdoctor');
+      const filteredDoctors = applyFilter(response.data.doctors, filter);
+      setDoctors(filteredDoctors);
+    } catch (error) {
+      console.log('Error loading doctors:', error);
+    }
+  };
+
+  const applyFilter = (doctors, filter) => {
+    const { doctortype, location, minPrice, maxPrice } = filter;
+    return doctors.filter((doctor) => {
+      if (doctortype && doctor.speciality !== doctortype) {
+        return false;
       }
-    };
-    fetchDoctors();
-  }, []);
+      if (location && doctor.Location !== location) {
+        return false;
+      }
+      if (minPrice && doctor.price < minPrice) {
+        return false;
+      }
+      if (maxPrice && doctor.price > maxPrice) {
+        return false;
+      }
+      return true;
+    });
+  };
+
+
 
 
 

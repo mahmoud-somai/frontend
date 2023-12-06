@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const UsersList = () => {
  
@@ -26,37 +27,76 @@ const UsersList = () => {
     fetchUsers();
   }, []);
   
+  const handleDeleteUser = async (userId) => {
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      try {
+        const response = await axios.delete(`http://34.196.153.174:4000/api/user/${userId}`);
+        
+        if (response.status === 200) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'User deleted with success',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          setTimeout(() => {
+            window.location.reload();
+          }, 1500);
+         
+        }
+      } catch (error) {
+        console.error(`Error deleting user with ID ${userId}:`, error);
+      }
+    }
+  };
+
+
   return (
     <div className="parent_apt">
-      <div className="div1_apt">
-        <div className="appointment-container">
-          <h2>Users List</h2>
-          <Link to="/admin/newUser">
-            <button className="add-user-btn">Add User</button>
-          </Link>
-          <table className="appointment-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>User</th>
-                <th>User's Phone</th>
-                <th>User's Email</th>
-              </tr>
-            </thead>
-            <tbody>
+    <div className="div1_apt">
+      <div className="appointment-container">
+        <h2>Users List</h2>
+        <Link to="/admin/newUser">
+          <button className="add-user-btn">Add User</button>
+        </Link>
+        <table className="appointment-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>User</th>
+              <th>User's Phone</th>
+              <th>User's Email</th>
+              <th>Actions</th> {/* New column for Update and Delete buttons */}
+            </tr>
+          </thead>
+          <tbody>
             {users.map((user) => (
-                <tr key={user._id}>
-                  <td>{user._id}</td>
-                  <td>{user.firstName} {user.lastName}</td>
-                  <td>{user.address}</td>
-                  <td>{user.email}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              <tr key={user._id}>
+                <td>{user._id}</td>
+                <td>{user.firstName} {user.lastName}</td>
+                <td>{user.address}</td>
+                <td>{user.email}</td>
+                <td>
+                  {/* Update button */}
+                  <Link to={`/admin/updateuser/${user._id}`}>
+                    <button className="update-btn">Update</button>
+                  </Link>
+                  {/* Delete button (you can add confirmation modals or functionality here) */}
+                  <button
+                    className="delete-btn"
+                    onClick={() => handleDeleteUser(user._id)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
+  </div>
   );
 };
 
