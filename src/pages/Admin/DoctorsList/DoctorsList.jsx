@@ -10,7 +10,7 @@ const DoctorsList = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/api/Listdoctor');
+        const response = await axios.get('http://34.196.153.174:4000/api/Listdoctor');
         if (response.status === 200) {
           const { doctors, NbDoctors } = response.data;
           setDoctors(doctors);

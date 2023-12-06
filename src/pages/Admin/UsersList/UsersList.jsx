@@ -11,7 +11,7 @@ const UsersList = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/api/Listusers');
+        const response = await axios.get('http://34.196.153.174:4000/api/Listusers');
         if (response.status === 200) {
           const { users, NbUsers } = response.data;
           setUsers(users);

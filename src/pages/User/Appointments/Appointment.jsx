@@ -10,7 +10,7 @@ const Appointment = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/api/Appointment');
+        const response = await axios.get('http://34.196.153.174:4000/api/Appointment');
         if (response.status === 200) {
           const userAppointments = response.data.appointments.filter(
             (appointment) => appointment.idUser === localStorage.getItem('userId')

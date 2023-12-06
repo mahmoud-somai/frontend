@@ -33,7 +33,7 @@ const BookDoc = () => {
   const handleTakeAppointment = async () => {
     try {
       const { firstName, lastName, speciality } = doctor;
-      const response = await axios.post('http://localhost:8800/api/Appointment', {
+      const response = await axios.post('http://34.196.153.174:4000/api/Appointment', {
         NameUser: nameUser,
         NameDoctor: `${firstName} ${lastName}`,
         DateApp: selectedDate,

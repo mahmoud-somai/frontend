@@ -18,7 +18,7 @@ const Users = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8800/api/user/register', userData);
+      const response = await axios.post('http://34.196.153.174:4000/api/user/register', userData);
       if (response.status === 200) {
         console.log('Doctor added with success:', response.data);
         Swal.fire({

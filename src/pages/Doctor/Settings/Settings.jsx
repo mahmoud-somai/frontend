@@ -48,7 +48,7 @@ const Settings = () => {// Get the doctor ID from the URL params
   useEffect(() => {
     const fetchDoctorDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:8800/api/doctor/${id}`);
+        const response = await axios.get(`http://34.196.153.174:4000/api/doctor/${id}`);
         if (response.status === 200) {
           setDoctorData(response.data); 
           console.log(response.data);
@@ -66,7 +66,7 @@ const Settings = () => {// Get the doctor ID from the URL params
     e.preventDefault();
   
     try {
-      const response = await axios.patch(`http://localhost:8800/api/doctor/${id}`, doctorData); // Using PATCH method
+      const response = await axios.patch(`http://34.196.153.174:4000/api/doctor/${id}`, doctorData); // Using PATCH method
       if (response.status === 200) {
         console.log('Doctor updated with success:', response.data);
         Swal.fire({

@@ -104,7 +104,7 @@ const HomeAdmin = () => {
   useEffect(() => {
     const fetchUserCount = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/api/Listusers'); // Make GET request using Axios
+        const response = await axios.get('http://34.196.153.174:4000/api/Listusers'); // Make GET request using Axios
         if (response.status === 200) {
           setUserCount(response.data.NbUsers);
            // Update user count state
@@ -123,7 +123,7 @@ const HomeAdmin = () => {
   useEffect(() => {
     const fetchDoctorCount = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/api/ListDoctor'); // Make GET request using Axios
+        const response = await axios.get('http://34.196.153.174:4000/api/ListDoctor'); // Make GET request using Axios
         if (response.status === 200) {
           setDoctorCount(response.data.NbDoctors);
            // Update user count state

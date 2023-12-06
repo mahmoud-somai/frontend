@@ -46,7 +46,7 @@ const Doctors = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8800/api/doctor',{
+      const response = await axios.post('http://34.196.153.174:4000/api/doctor',{
         firstName,
         lastName,
         phoneNumber,

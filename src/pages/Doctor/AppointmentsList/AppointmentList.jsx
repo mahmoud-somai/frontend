@@ -10,7 +10,7 @@ const AppointmentList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/api/Appointment');
+        const response = await axios.get('http://34.196.153.174:4000/api/Appointment');
         if (response.status === 200) {
           const today = new Date().toISOString().split('T')[0];
           console.log(today); // Get current date in YYYY-MM-DD format
