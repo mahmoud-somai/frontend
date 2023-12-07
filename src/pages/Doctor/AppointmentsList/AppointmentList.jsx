@@ -50,7 +50,6 @@ const AppointmentList = () => {
                   <td>{appointment.NameUser}</td>
                   <td>{appointment.DateApp} </td>
                   <td>{appointment.TimeApp}</td>
-
                 </tr>
               ))}
             </tbody>

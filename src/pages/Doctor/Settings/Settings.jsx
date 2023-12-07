@@ -72,7 +72,7 @@ const Settings = () => {// Get the doctor ID from the URL params
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Doctor updated with success",
+          title: "Setting updated with success",
           showConfirmButton: false,
           timer: 1500
         });
@@ -152,7 +152,7 @@ const Settings = () => {// Get the doctor ID from the URL params
 
 
         <div className="form-group">
-          <label>Specialization:</label>
+          <label>Speciality:</label>
           <select
               name="speciality"
               value={doctorData.speciality}
@@ -255,7 +255,7 @@ const Settings = () => {// Get the doctor ID from the URL params
             </select>
         </div>
         </div>
-        <button type="submit">Update Settings</button>
+        <button type="submit">Update Settings</button>&nbsp;&nbsp;<button>Cancel</button>
       </form>
     </div>
   );

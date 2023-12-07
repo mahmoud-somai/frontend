@@ -18,7 +18,7 @@ const Login = () => {
       });
 
       if (response.status === 200) {
-        const{ token ,idUser,NameUser,role }= response.data;
+        const{ token ,idUser,NameUser,role ,address}= response.data;
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -30,6 +30,7 @@ const Login = () => {
         localStorage.setItem('idUser', idUser);
         localStorage.setItem('NameUser', NameUser);
         localStorage.setItem('role', role);
+        localStorage.setItem('address', address);
         navigate("/user/profile")
       }
     } catch (error) {
@@ -59,7 +60,7 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
-            placeholder="*********"
+            placeholder="Enter your password"
             className="input"
             type="password"
             value={password}

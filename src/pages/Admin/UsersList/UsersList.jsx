@@ -15,7 +15,8 @@ const UsersList = () => {
         const response = await axios.get('http://34.196.153.174:4000/api/Listusers');
         if (response.status === 200) {
           const { users, NbUsers } = response.data;
-          setUsers(users);
+          const filteredUsers = users.filter(user => user.role === 'user'); // Filter users by role
+          setUsers(filteredUsers);
           setUsersCount(NbUsers);
         } else {
           console.error('Failed to fetch Users:', response.statusText);
@@ -26,6 +27,7 @@ const UsersList = () => {
     };
     fetchUsers();
   }, []);
+
   
   const handleDeleteUser = async (userId) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
@@ -64,18 +66,18 @@ const UsersList = () => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>User</th>
-              <th>User's Phone</th>
-              <th>User's Email</th>
+              <th>Username</th>
+              <th>User Phone</th>
+              <th>User Email</th>
               <th>Actions</th> {/* New column for Update and Delete buttons */}
             </tr>
           </thead>
           <tbody>
             {users.map((user) => (
               <tr key={user._id}>
-                <td>{user._id}</td>
+                <td>{user._id.slice(-10)}</td>
                 <td>{user.firstName} {user.lastName}</td>
-                <td>{user.address}</td>
+                <td>{user.phoneNumber}</td>
                 <td>{user.email}</td>
                 <td>
                   {/* Update button */}

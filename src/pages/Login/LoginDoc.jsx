@@ -9,6 +9,8 @@ const LoginDoc = () => {
     const navigate=useNavigate()
     const handleSubmit = async (e) => {
       e.preventDefault();
+      console.log('Email:', email);
+      console.log('Password:', password);
   
       try {
         const response = await axios.post('http://34.196.153.174:4000/api/doctor/logindoc', {
@@ -17,7 +19,7 @@ const LoginDoc = () => {
         });
   
         if (response.status === 200) {
-          const{ token ,idDoctor,NameDoctor }= response.data;
+          const{ token ,idDoctor,NameDoctor,speciality }= response.data;
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -28,6 +30,7 @@ const LoginDoc = () => {
           localStorage.setItem('token', token);
           localStorage.setItem('idUser', idDoctor);
           localStorage.setItem('NameUser', NameDoctor);
+          localStorage.setItem('speciality', speciality);
           localStorage.setItem('role', 'doctor');
           navigate("/doctor/profile")
         }
@@ -57,7 +60,7 @@ const LoginDoc = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
-          placeholder="*********"
+          placeholder="Enter your password"
           className="input"
           type="password"
           value={password}

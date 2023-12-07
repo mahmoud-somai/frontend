@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams,useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './BookDoc.css';
 import Swal from 'sweetalert2';
 
@@ -9,11 +9,10 @@ const BookDoc = () => {
   const [doctor, setDoctor] = useState(null);
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const idUser = localStorage.getItem('idUser');
   const nameUser = localStorage.getItem('NameUser');
-
 
   useEffect(() => {
     const fetchDoctor = async () => {
@@ -29,7 +28,6 @@ const BookDoc = () => {
     fetchDoctor();
   }, [id]);
 
-
   const generateTimeOptions = () => {
     const times = [];
     for (let i = 8; i <= 23; i++) {
@@ -43,28 +41,40 @@ const BookDoc = () => {
 
   const handleTakeAppointment = async () => {
     try {
-      const { firstName, lastName, speciality } = doctor;
-      const response = await axios.post('http://34.196.153.174:4000/api/Appointment', {
+      const appointmentResponse = await axios.post('http://34.196.153.174:4000/api/Appointment', {
         NameUser: nameUser,
-        NameDoctor: `${firstName} ${lastName}`,
+        NameDoctor: `${doctor.firstName} ${doctor.lastName}`,
         DateApp: selectedDate,
         TimeApp: selectedTime,
         idDoctor: doctor._id,
         idUser: idUser,
       });
 
-      if (response.status === 200) {
+      if (appointmentResponse.status === 200) {
         Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Appointment saved with success",
-            showConfirmButton: false,
-            timer: 1500
-          });
-          navigate("/user/profile")
+          position: 'top-end',
+          icon: 'success',
+          title: 'Request Sended with success',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        const notifResponse = await axios.post('http://34.196.153.174:4000/api/Notif', {
+          idDoctor: doctor._id, // Assuming doctor._id holds the ID of the selected doctor
+          idUser: idUser, // Assuming idUser is the ID of the logged-in user
+          DateApp: selectedDate,
+          TimeApp: selectedTime,
+          message: `Your Demand is sended wth success to Dr. ${doctor.firstName} ${doctor.lastName}`,
+        });
+
+        if (notifResponse.status === 200) {
+          console.log('Notification sent with success');
+        }
+
+        navigate('/user/profile');
       }
     } catch (error) {
-      console.error('Error saving the appointment:', error);
+      console.error('Error handling appointment:', error);
     }
   };
 
@@ -85,21 +95,20 @@ const BookDoc = () => {
                 </div>
                 <div className="stats">
                   <h3>Time Of Appointment</h3>
-        <div>
-
-            <select
-                name="selectedTime"
-                value={selectedTime}
-                  onChange={(e) => setSelectedTime(e.target.value)} // Updated to setSelectedTime
-                required
-              >
-            {timeOptions.map((time, index) => (
-              <option key={index} value={time}>
-                {time}
-              </option>
-            ))}
-          </select>
-          </div>
+                  <div>
+                    <select
+                      name="selectedTime"
+                      value={selectedTime}
+                      onChange={(e) => setSelectedTime(e.target.value)} // Updated to setSelectedTime
+                      required
+                    >
+                      {timeOptions.map((time, index) => (
+                        <option key={index} value={time}>
+                          {time}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                   <input
                     type="date"
                     value={selectedDate}
@@ -108,7 +117,7 @@ const BookDoc = () => {
                 </div>
               </div>
             </div>
-            <button className="request" type="button"  onClick={handleTakeAppointment}>
+            <button className="request" type="button" onClick={handleTakeAppointment}>
               Take Appointment
             </button>
           </div>

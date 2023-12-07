@@ -41,7 +41,7 @@ const NotifsList = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "approved",
+          title: "All Readed",
           showConfirmButton: false,
           timer: 1500
         });

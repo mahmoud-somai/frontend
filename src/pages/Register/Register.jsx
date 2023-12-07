@@ -33,7 +33,7 @@ const Register = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: message,
+          title: "Registration With Success",
           showConfirmButton: false,
           timer: 1500
         });
@@ -72,13 +72,7 @@ const Register = () => {
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
-          <input
-            type="text"
-            className="input_reg"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+
           <input
             type="text"
             className="input_reg"
@@ -101,9 +95,16 @@ const Register = () => {
             onChange={(e) => setAge(e.target.value)}
           />
           <input
+            type="text"
+            className="input_reg"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
             type="password"
             className="input_reg"
-            placeholder="*********"
+            placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />

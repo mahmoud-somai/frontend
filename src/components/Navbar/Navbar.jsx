@@ -6,10 +6,8 @@ const Navbar = () => {
   const role = localStorage.getItem('role');
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('idUser');
-    localStorage.removeItem('NameUser');
-    localStorage.removeItem('role');
+
+    localStorage.clear();
   };
 
   const renderUserLinks = () => (

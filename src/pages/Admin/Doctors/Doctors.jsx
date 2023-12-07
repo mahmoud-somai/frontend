@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Doctors.css'; 
-import{useNavigate} from "react-router-dom"
+import{useNavigate,Link} from "react-router-dom"
 import Swal from 'sweetalert2';
+
 
 const Doctors = () => {
   const [firstName, setFirstName] = useState('');
@@ -136,7 +137,7 @@ const Doctors = () => {
           />
         </div>
         <div className="form-group">
-          <label>Specialization:</label>
+          <label>Speciality:</label>
           <select
               name="specialization"
               value={speciality}
@@ -229,7 +230,7 @@ const Doctors = () => {
             </select>
         </div>
         </div>
-        <button type="submit">Add Doctor</button>
+        <button type="submit">Add New Doctor</button> &nbsp;&nbsp; <Link to="/admin/doctorsList"> <button>Cancel</button> </Link> 
       </form>
     </div>
   );

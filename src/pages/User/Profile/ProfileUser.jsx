@@ -6,6 +6,7 @@ const ProfileUser = () => {
   const [userAppointments, setUserAppointments] = useState([]);
   const userId = localStorage.getItem('idUser');
   const username=localStorage.getItem('NameUser');
+  const address=localStorage.getItem('address');
 
 
   const user = {
@@ -52,7 +53,7 @@ const ProfileUser = () => {
           </div>
           <h2>{username}</h2>
           <p><strong>Email:</strong> {user.email}</p>
-          <p><strong>Address:</strong> {user.address}</p>
+          <p><strong>Address:</strong> {address}</p>
           <p><strong>Last Logged In:</strong> {user.lastLoggedIn}</p>
         </div>
       </div>

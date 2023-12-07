@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import{useNavigate} from "react-router-dom"
+import{useNavigate,Link} from "react-router-dom"
 import Swal from 'sweetalert2';
 
 import './Users.css';
@@ -24,7 +24,7 @@ const Users = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Doctor added with success",
+          title: "User added with success",
           showConfirmButton: false,
           timer: 1500
         });
@@ -98,7 +98,7 @@ const Users = () => {
           />
         </div>
         
-        <button type="submit">Add User</button>&nbsp;&nbsp;
+        <button type="submit">Add New User</button>&nbsp;&nbsp; <Link to="/admin/usersList"><button>Cancel</button></Link>
         
       </form>
     </div>

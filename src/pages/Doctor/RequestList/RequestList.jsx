@@ -35,7 +35,7 @@ const RequestList = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "approved",
+          title: "Request approved",
           showConfirmButton: false,
           timer: 1500
         });
@@ -54,7 +54,7 @@ const RequestList = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "canceled",
+          title: "Request canceled",
           showConfirmButton: false,
           timer: 1500
         });
@@ -69,7 +69,7 @@ const RequestList = () => {
     <div className="parent_apt">
       <div className="div1_apt">
         <div className="appointment-container">
-          <h2>Appointments List</h2>
+          <h2>Requests List</h2>
           <table className="appointment-table">
             <thead>
               <tr>

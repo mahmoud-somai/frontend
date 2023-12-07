@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate ,useParams} from 'react-router-dom';
+import { useNavigate ,useParams,Link} from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 
@@ -152,7 +152,7 @@ const UpdateDoc = () => {// Get the doctor ID from the URL params
 
 
         <div className="form-group">
-          <label>Specialization:</label>
+          <label>Speciality:</label>
           <select
               name="speciality"
               value={doctorData.speciality}
@@ -255,7 +255,7 @@ const UpdateDoc = () => {// Get the doctor ID from the URL params
             </select>
         </div>
         </div>
-        <button type="submit">Update Settings</button>
+        <button type="submit">Update Settings</button>&nbsp;&nbsp;  <Link to="/admin/doctorsList"> <button>Cancel</button> </Link> 
       </form>
     </div>
   );

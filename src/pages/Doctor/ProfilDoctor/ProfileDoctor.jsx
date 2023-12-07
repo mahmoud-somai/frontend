@@ -5,6 +5,7 @@ const ProfileDoctor = () => {
     const [userAppointments, setUserAppointments] = useState([]);
   const userId = localStorage.getItem('idUser');
   const username=localStorage.getItem('NameUser');
+  const speciality=localStorage.getItem('speciality');
 
 
   const user = {
@@ -49,7 +50,7 @@ const ProfileDoctor = () => {
         </div>
         <h2>{username}</h2>
         <p><strong>Email:</strong> {user.email}</p>
-        <p><strong>Address:</strong> {user.address}</p>
+        <p><strong>Address:</strong> {speciality}</p>
         <p><strong>Last Logged In:</strong> {user.lastLoggedIn}</p>
       </div>
     </div>

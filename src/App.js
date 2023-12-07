@@ -25,6 +25,7 @@ import UpdateUser from './pages/Admin/UsersList/UpdateUser';
 function App() {
   return (
     <>
+   
       <Navbar/>
       <Background/>
       <BrowserRouter>
@@ -36,9 +37,8 @@ function App() {
       <Route path="/doc" element={<LoginDoc/>}/>
       <Route path="/register" element={<Register/>}/>
 
-
-      <Route path="/admin/newDoctor" element={<Doctors/>}/> 
       <Route path="/admin" element={<HomeAdmin/>}/>
+      <Route path="/admin/newDoctor" element={<Doctors/>}/> 
       <Route path="/admin/doctorsList" element={<DoctorsList/>}/>
       <Route path="/admin/usersList" element={<UsersList/>}/>
       <Route path="/admin/newUser" element={<Users/>}/>
@@ -47,23 +47,21 @@ function App() {
 
 
       <Route path="/doctor/settings" element={<Settings/>}/>
-      <Route path="/doctor/profile" element={<ProfileDoctor/>}/>
-      <Route path="/doctor/appoitmentList" element={<AppointmentList/>}/>
+      <Route path="/doctor/appoitmentList" element={<AppointmentList/>}/>   
       <Route path="/doctor/notifsList" element={<NotifsList/>}/>
       <Route path="/doctor/Requests" element={<RequestList/>}/>
 
 
+      <Route path="/doctor/profile" element={<ProfileDoctor/>}/>
+
+
+      <Route path="/user/profile" element={<ProfileUser/>}/>
+      
       <Route path="/booking" element={<Booking/>}/>
       <Route path="/user/appoitment" element={<Appointment/>}/>
       <Route path="/booking/doctor/:id" element={<BookDoc/>}/>
-      <Route path="/user/profile" element={<ProfileUser/>}/>
       <Route path="/user/notifications" element={<Notification/>}/>
 
-      
-
-
-
-      
       
       </Routes>
       </BrowserRouter>

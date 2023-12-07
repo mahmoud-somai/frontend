@@ -260,13 +260,13 @@ const HomeAdmin = () => {
       </div>
 
       <div   className="chart-item graph">
-        <h2>User Stats Pie Chart</h2>
+        <h2>User Stats </h2>
         <canvas  ref={pieChartContainer} width="400" height="300"></canvas>
       </div>
     </div>
 
     <div className="appointment-bar-chart">
-      <h2>Appointments By Month (Bar Chart for 2023)</h2>
+      <h2>Appointments By Month (2023)</h2>
       <canvas ref={barChartContainer} width="400" height="300"></canvas>
     </div>
   </div>

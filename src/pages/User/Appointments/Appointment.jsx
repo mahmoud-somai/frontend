@@ -38,7 +38,7 @@ const Appointment = () => {
           <th>Doctor</th>
           <th>Date</th>
           <th>Time</th>
-          <th>Status</th>
+        
         </tr>
       </thead>
       <tbody>
@@ -48,7 +48,7 @@ const Appointment = () => {
             <td>{appointment.NameDoctor}</td>
             <td>{appointment.DateApp}</td>
             <td>{appointment.TimeApp}</td>
-            <td>{appointment.status}</td>
+           
           </tr>
         ))}
       </tbody>

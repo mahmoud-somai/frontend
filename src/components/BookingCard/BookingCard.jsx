@@ -56,12 +56,12 @@ const BookingCard = ({ filter }) => {
             <div className="content-box">
               <span className="card-title">{doctor.firstName} {doctor.lastName}</span>
               <p className="card-content">{doctor.speciality}</p>
+              <p className="card-content">{doctor.location}</p>
               <Link to={`/booking/doctor/${doctor._id}`} className="see-more">
               <span>Book Now</span>
             </Link>
             </div>
             <div className="date-box">
-              <span className="month">Price</span>
               <span className="date">{doctor.price} DT</span>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams,Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 
@@ -116,7 +116,7 @@ const UpdateUser = () => {
               />
             </div>
 
-            <button type="submit">Update User</button>
+            <button type="submit">Update User</button>&nbsp;&nbsp;<Link to="/admin/usersList"> <button>Cancel</button> </Link> 
           </form>
         </div>
       );

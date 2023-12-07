@@ -66,8 +66,8 @@ const DoctorsList = () => {
               <tr>
                 <th>ID</th>
                 <th>Doctor</th>
+                <th>Speciality</th>
                 <th>Phone</th>
-                <th>Specialization</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -76,8 +76,9 @@ const DoctorsList = () => {
         <tr key={doctor._id}>
           <td> {doctor._id} </td>
           <td> {doctor.firstName} {doctor.lastName} </td>
-          <td>{doctor.phoneNumber}</td>
           <td>{doctor.speciality}</td>
+          <td>{doctor.phoneNumber}</td>
+          
           <td>
           <Link to={`/admin/updatedoctor/${doctor._id}`}>
              <button className="update-btn">Update</button>

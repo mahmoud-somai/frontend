@@ -5,7 +5,7 @@ const Filter = ({ filter, onFilterChange }) => {
     <div className="listSearch">
       <h1 className="lsTitle">Filter</h1>
       <div className="lsItem">
-        <label>Type Of Doctors</label>
+        <label>Speciality Of Doctors</label>
         <select name="doctortype" value={filter.doctortype} onChange={onFilterChange}>
           <option value="">All</option>
           <option value="General practitioner">General practitioner</option>
