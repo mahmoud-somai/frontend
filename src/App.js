@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter,Routes,Route} from "react-router-dom";
+import { BrowserRouter,Routes,Route,Navigate} from "react-router-dom";
 import Navbar from './components/Navbar/Navbar';
 import Background from './components/Background/Background';
 import Login from './pages/Login/Login';
@@ -22,6 +22,7 @@ import LoginDoc from './pages/Login/LoginDoc';
 import RequestList from './pages/Doctor/RequestList/RequestList';
 import UpdateDoc from './pages/Admin/DoctorsList/UpdateDoc';
 import UpdateUser from './pages/Admin/UsersList/UpdateUser';
+import Home from './pages/Home/Home';
 function App() {
   return (
     <>
@@ -31,6 +32,8 @@ function App() {
       <BrowserRouter>
       <Routes>
 
+      <Route path="/" element={<Navigate replace to="/home"/>}/>
+        <Route path="/home" element={<Home/>}/>
 
 
       <Route path="/login" element={<Login/>}/>
@@ -45,18 +48,17 @@ function App() {
       <Route path="/admin/updatedoctor/:id" element={<UpdateDoc/>}/>
       <Route path="/admin/updateuser/:id" element={<UpdateUser/>}/>
 
-
+      <Route path="/doctor/profile" element={<ProfileDoctor/>}/>
       <Route path="/doctor/settings" element={<Settings/>}/>
       <Route path="/doctor/appoitmentList" element={<AppointmentList/>}/>   
       <Route path="/doctor/notifsList" element={<NotifsList/>}/>
       <Route path="/doctor/Requests" element={<RequestList/>}/>
 
 
-      <Route path="/doctor/profile" element={<ProfileDoctor/>}/>
+     
 
 
       <Route path="/user/profile" element={<ProfileUser/>}/>
-      
       <Route path="/booking" element={<Booking/>}/>
       <Route path="/user/appoitment" element={<Appointment/>}/>
       <Route path="/booking/doctor/:id" element={<BookDoc/>}/>
