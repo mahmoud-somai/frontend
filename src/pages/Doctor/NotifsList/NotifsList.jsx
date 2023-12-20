@@ -72,7 +72,7 @@ const NotifsList = () => {
             filteredNotifications.map((notification) => (
               <tr key={notification._id}>
                 <td>{notification._id.slice(-10)}</td>
-                <td>{notification.message}</td>
+                <td>User : Fedi Fedi want to take an appointment in 2023-12-14 at 11:00 </td>
                 <td>{notification.Status ? 'Seen' : 'Unseen'}</td>
               </tr>
             ))}

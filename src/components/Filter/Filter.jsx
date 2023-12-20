@@ -8,10 +8,13 @@ const Filter = ({ filter, onFilterChange }) => {
         <label>Speciality Of Doctors</label>
         <select name="doctortype" value={filter.doctortype} onChange={onFilterChange}>
           <option value="">All</option>
-          <option value="General practitioner">General practitioner</option>
-          <option value="Cardiologist">Cardiologist</option>
-          <option value="Dermatologist">Dermatologist</option>
-          <option value="Otolaryngologist">Otolaryngologist</option>
+          <option value="Cardiology">Cardiology</option>
+          <option value="Dermatology">Dermatology</option>
+          <option value="Gynecology">Gynecology</option>
+          <option value="Gastroenterology">Gastroenterology</option>
+          <option value="Neurology">Neurology</option>
+          <option value="Ophthalmology">Ophthalmology</option>
+          <option value="Pediatrics">Pediatrics</option>
         </select>
       </div>
       <div className="lsItem">
@@ -19,9 +22,9 @@ const Filter = ({ filter, onFilterChange }) => {
         <select name="location" value={filter.location} onChange={onFilterChange}>
           <option value="">All</option>
           <option value="Tunis">Tunis</option>
-          <option value="Ben Arous">Ben Arous</option>
           <option value="Sfax">Sfax</option>
           <option value="Sousse">Sousse</option>
+          <option value="Gabes">Gabes</option>
         </select>
       </div>
       <div className="lsItem">

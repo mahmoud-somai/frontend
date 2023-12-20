@@ -52,7 +52,6 @@ const ProfileUser = () => {
             <img src={user.image} alt="User" />
           </div>
           <h2>{username}</h2>
-          <p><strong>Email:</strong> {user.email}</p>
           <p><strong>Address:</strong> {address}</p>
           <p><strong>Last Logged In:</strong> {user.lastLoggedIn}</p>
         </div>

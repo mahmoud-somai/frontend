@@ -30,7 +30,7 @@ const BookingCard = ({ filter }) => {
       if (doctortype && doctor.speciality !== doctortype) {
         return false;
       }
-      if (location && doctor.Location !== location) {
+      if (location && doctor.location !== location) {
         return false;
       }
       if (minPrice && doctor.price < minPrice) {

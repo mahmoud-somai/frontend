@@ -13,7 +13,7 @@ const Appointment = () => {
         const response = await axios.get('http://34.196.153.174:4000/api/Appointment');
         if (response.status === 200) {
           const userAppointments = response.data.appointments.filter(
-            (appointment) => appointment.idUser === localStorage.getItem('userId')
+            (appointment) => appointment.idUser === localStorage.getItem('idUser')
           );
           setAppointments(userAppointments);
         }

@@ -13,6 +13,7 @@ const Notification = () => {
       try {
         const response = await axios.get('http://34.196.153.174:4000/api/Notif');
         if (response.status === 200) {
+          
           setNotifications(response.data);
           setFilteredNotifications(response.data); // Set initial filtered notifications to all notifications
         } else {

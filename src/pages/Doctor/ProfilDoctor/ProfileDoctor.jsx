@@ -29,7 +29,7 @@ const ProfileDoctor = () => {
           const filteredAppointments = appointments.filter(
             (appointment) => {
               const appointmentDate = new Date(appointment.DateApp + 'T' + appointment.TimeApp);
-              return appointment.idUser === userId && appointmentDate > currentDate;
+              return appointment.idDoctor === userId ;
             }
           );
           setUserAppointments(filteredAppointments);
@@ -49,7 +49,6 @@ const ProfileDoctor = () => {
           <img src={user.image} alt="User" />
         </div>
         <h2>{username}</h2>
-        <p><strong>Email:</strong> {user.email}</p>
         <p><strong>Address:</strong> {speciality}</p>
         <p><strong>Last Logged In:</strong> {user.lastLoggedIn}</p>
       </div>
@@ -61,7 +60,7 @@ const ProfileDoctor = () => {
           <tr>
             <th>Date</th>
             <th>Time</th>
-            <th>Doctor</th>
+            <th>User</th>
           </tr>
         </thead>
         <tbody>
@@ -69,7 +68,7 @@ const ProfileDoctor = () => {
             <tr key={index}>
               <td>{appointment.DateApp}</td>
               <td>{appointment.TimeApp}</td>
-              <td>{appointment.NameDoctor}</td>
+              <td>{appointment.NameUser}</td>
             </tr>
           ))}
         </tbody>
